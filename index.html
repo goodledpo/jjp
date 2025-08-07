@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AI株価分析 AI株価予測情報</title>
+  <link rel="stylesheet"  href="static/css/main.css">
+  <script src="static/js/analytics.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=谷歌追踪ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', '谷歌追踪ID'); //替换成你的谷歌追踪代码
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=谷歌追踪ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', '谷歌追踪ID');
+  </script>
+  <script>
+
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof url !== 'undefined') {
+          window.location.href = url;
+        }
+      };
+      gtag('event', 'conversion', {
+        'send_to': 'AW-1012162993/R6V-CLHA_cUaELHD0eID', //替换成你的谷歌追踪代码
+        'transaction_id': '',
+        'event_callback': callback
+      });
+      return false;
+    }
+  </script>
+<style>
+  .info .info-btn {
+    width: 80%;
+    height: 45px;
+    border-radius: 22.5px;
+    background: linear-gradient(to right, #071e75, #0046a5);
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .info .info-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .info .info-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .result .info-btn {
+    width: 98%;
+    height: 50px;
+    border-radius: 25px;
+    background: linear-gradient(to right, #071e75, #0046a5); 
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3% auto auto;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .result .info-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .result .info-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+   /* 定义跳动动画 */
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+</style>
+  <style data-id="immersive-translate-input-injected-css">
+    .immersive-translate-input {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 2147483647;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .immersive-translate-attach-loading::after {
+      content: " ";
+
+      --loading-color: #f78fb6;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: block;
+      margin: 12px auto;
+      position: relative;
+      color: white;
+      left: -100px;
+      box-sizing: border-box;
+      animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-2000%, -50%);
+      z-index: 100;
+    }
+
+    .immersive-translate-loading-spinner {
+      vertical-align: middle !important;
+      width: 10px !important;
+      height: 10px !important;
+      display: inline-block !important;
+      margin: 0 4px !important;
+      border: 2px rgba(221, 244, 255, 0.6) solid !important;
+      border-top: 2px rgba(0, 0, 0, 0.375) solid !important;
+      border-left: 2px rgba(0, 0, 0, 0.375) solid !important;
+      border-radius: 50% !important;
+      padding: 0 !important;
+      -webkit-animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+      animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+    }
+
+    @-webkit-keyframes immersive-translate-loading-animation {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+
+      to {
+        -webkit-transform: rotate(359deg);
+      }
+    }
+
+    @keyframes immersive-translate-loading-animation {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(359deg);
+      }
+    }
+
+    .immersive-translate-input-loading {
+      --loading-color: #f78fb6;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: block;
+      margin: 12px auto;
+      position: relative;
+      color: white;
+      left: -100px;
+      box-sizing: border-box;
+      animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+    }
+
+    @keyframes immersiveTranslateShadowRolling {
+      0% {
+        box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0),
+          0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+      }
+
+      12% {
+        box-shadow: 100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0),
+          0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+      }
+
+      25% {
+        box-shadow: 110px 0 var(--loading-color), 100px 0 var(--loading-color),
+          0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+      }
+
+      36% {
+        box-shadow: 120px 0 var(--loading-color), 110px 0 var(--loading-color),
+          100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0);
+      }
+
+      50% {
+        box-shadow: 130px 0 var(--loading-color), 120px 0 var(--loading-color),
+          110px 0 var(--loading-color), 100px 0 var(--loading-color);
+      }
+
+      62% {
+        box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color),
+          120px 0 var(--loading-color), 110px 0 var(--loading-color);
+      }
+
+      75% {
+        box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+          130px 0 var(--loading-color), 120px 0 var(--loading-color);
+      }
+
+      87% {
+        box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+          200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color);
+      }
+
+      100% {
+        box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+          200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+      }
+    }
+
+    .immersive-translate-toast {
+      display: flex;
+      position: fixed;
+      z-index: 2147483647;
+      left: 0;
+      right: 0;
+      top: 1%;
+      width: fit-content;
+      padding: 12px 20px;
+      margin: auto;
+      overflow: auto;
+      background: #fef6f9;
+      box-shadow: 0px 4px 10px 0px rgba(0, 10, 30, 0.06);
+      font-size: 15px;
+      border-radius: 8px;
+      color: #333;
+    }
+
+    .immersive-translate-toast-content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .immersive-translate-toast-hidden {
+      margin: 0 20px 0 72px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .immersive-translate-toast-close {
+      color: #666666;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 768px) {
+      .immersive-translate-toast {
+        top: 0;
+        padding: 12px 0px 0 10px;
+      }
+
+      .immersive-translate-toast-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .immersive-translate-toast-hidden {
+        margin: 10px auto;
+      }
+    }
+
+    .immersive-translate-modal {
+      display: none;
+      position: fixed;
+      z-index: 2147483647;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
+      font-size: 15px;
+    }
+
+    .immersive-translate-modal-content {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 40px 24px 24px;
+      border-radius: 12px;
+      width: 350px;
+      font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+        "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol", "Noto Color Emoji";
+      position: relative;
+    }
+
+    @media screen and (max-width: 768px) {
+      .immersive-translate-modal-content {
+        margin: 50% auto !important;
+      }
+    }
+
+    .immersive-translate-modal .immersive-translate-modal-content-in-input {
+      max-width: 500px;
+    }
+
+    .immersive-translate-modal-content-in-input .immersive-translate-modal-body {
+      text-align: left;
+      max-height: unset;
+    }
+
+    .immersive-translate-modal-title {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: #333333;
+    }
+
+    .immersive-translate-modal-body {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 400;
+      color: #333333;
+      margin-top: 24px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .immersive-translate-modal-body {
+        max-height: 250px;
+        overflow-y: auto;
+      }
+    }
+
+    .immersive-translate-close {
+      color: #666666;
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .immersive-translate-close:hover,
+    .immersive-translate-close:focus {
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .immersive-translate-modal-footer {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .immersive-translate-btn {
+      width: fit-content;
+      color: #fff;
+      background-color: #ea4c89;
+      border: none;
+      font-size: 14px;
+      margin: 0 8px;
+      padding: 9px 30px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .immersive-translate-btn-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .immersive-translate-btn:hover {
+      background-color: #f082ac;
+    }
+
+    .immersive-translate-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .immersive-translate-btn:disabled:hover {
+      background-color: #ea4c89;
+    }
+
+    .immersive-translate-link-btn {
+      background-color: transparent;
+      color: #ea4c89;
+      border: none;
+      cursor: pointer;
+      height: 30px;
+      line-height: 30px;
+    }
+
+    .immersive-translate-cancel-btn {
+      /* gray color */
+      background-color: rgb(89, 107, 120);
+    }
+
+    .immersive-translate-cancel-btn:hover {
+      background-color: hsl(205, 20%, 32%);
+    }
+
+    .immersive-translate-action-btn {
+      background-color: transparent;
+      color: #ea4c89;
+      border: 1px solid #ea4c89;
+    }
+
+    .immersive-translate-btn svg {
+      margin-right: 5px;
+    }
+
+    .immersive-translate-link {
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-drag: none;
+      text-decoration: none;
+      color: #ea4c89;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .immersive-translate-primary-link {
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-drag: none;
+      text-decoration: none;
+      color: #ea4c89;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .immersive-translate-modal input[type="radio"] {
+      margin: 0 6px;
+      cursor: pointer;
+    }
+
+    .immersive-translate-modal label {
+      cursor: pointer;
+    }
+
+    .immersive-translate-close-action {
+      position: absolute;
+      top: 2px;
+      right: 0px;
+      cursor: pointer;
+    }
+
+    .imt-image-status {
+      background-color: rgba(0, 0, 0, 0.5) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-radius: 16px !important;
+    }
+
+    .imt-image-status img,
+    .imt-image-status svg,
+    .imt-img-loading {
+      width: 28px !important;
+      height: 28px !important;
+      margin: 0 0 8px 0 !important;
+      min-height: 28px !important;
+      min-width: 28px !important;
+      position: relative !important;
+    }
+
+    .imt-img-loading {
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAtFBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////oK74hAAAAPHRSTlMABBMIDyQXHwyBfFdDMSw+OjXCb+5RG51IvV/k0rOqlGRM6KKMhdvNyZBz9MaupmxpWyj437iYd/yJVNZeuUC7AAACt0lEQVRIx53T2XKiUBCA4QYOiyCbiAsuuGBcYtxiYtT3f6/pbqoYHVFO5r+iivpo6DpAWYpqeoFfr9f90DsYAuRSWkFnPO50OgR9PwiCUFcl2GEcx+N/YBh6pvKaefHlUgZd1zVe0NbYcQjGBfzrPE8Xz8aF+71D8gG6DHFPpc4a7xFiCDuhaWgKgGIJQ3d5IMGDrpS4S5KgpIm+en9f6PlAhKby4JwEIxlYJV9h5k5nee9GoxHJ2IDSNB0dwdad1NAxDJ/uXDHYmebdk4PdbkS58CIVHdYSUHTYYRWOJblWSyu2lmy3KNFVJNBhxcuGW4YBVCbYGRZwIooipHsNqjM4FbgOQqQqSKQQU9V8xmi1QlgHqQQ6DDBvRUVCDirs+EzGDGOQTCATgtYTnbCVLgsVgRE0T1QE0qHCFAht2z6dLvJQs3Lo2FQoDxWNUiBhaP4eRgwNkI+dAjVOA/kUrIDwf3CG8NfNOE0eiFotSuo+rBiq8tD9oY4Qzc6YJw99hl1wzpQvD7ef2M8QgnOGJfJw+EltQc+oX2yn907QB22WZcvlUpd143dqQu+8pCJZuGE4xCuPXJqqcs5sNpsI93Rmzym1k4Npk+oD1SH3/a3LOK/JpUBpWfqNySxWzCfNCUITuDG5dtuphrUJ1myeIE9bIsPiKrfqTai5WZxbhtNphYx6GEIHihyGFTI69lje/rxajdh0s0msZ0zYxyPLhYCb1CyHm9Qsd2H37Y3lugVwL9kNh8Ot8cha6fUNQ8nuXi5z9/ExsAO4zQrb/ev1yrCB7lGyQzgYDGuxq1toDN/JGvN+HyWNHKB7zEoK+PX11e12G431erGYzwmytAWU56fkMHY5JJnDRR2eZji3AwtIcrEV8Cojat/BdQ7XOwGV1e1hDjGGjXbdArm8uJZtCH5MbcctVX8A1WpqumJHwckAAAAASUVORK5CYII=");
+      background-size: 28px 28px;
+      animation: image-loading-rotate 1s linear infinite !important;
+    }
+
+    .imt-image-status span {
+      color: var(--bg-2, #fff) !important;
+      font-size: 14px !important;
+      line-height: 14px !important;
+      font-weight: 500 !important;
+      font-family: "PingFang SC", Arial, sans-serif !important;
+    }
+
+    @keyframes image-loading-rotate {
+      from {
+        transform: rotate(360deg);
+      }
+
+      to {
+        transform: rotate(0deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="app">
+      <div class="content">
+        <div class="middle">
+          <div class="info">
+            <div class="info-text">例:7203(卜彐タ自車)</div>
+            <div class="info-input"><input id="stock-input" type="text"
+                placeholder="会社名またはティッカ-を入カしてください"></div>
+            <div class="info-btn">分析を開始する</div>
+          </div>
+          <div class="desc">
+            <div class="desc-title">AIが未来の株価を透視</div>
+            <div class="desc-normal"> 最新大規模AIが「財務·ニュース·テクニカル」を 秒速で多次元分析。 個別株の上昇の余地が
+              あるかを正確に分析,そしてAIはレポートの中で明確に 「買い時」と「売り時」を提示します。 株式市場での成功をサポートします！ </div>
+          </div>
+        </div>
+        <div class="translate translateMiddle">
+          <div class="loading"><img class="loading-icon"
+              src="data:image/svg+xml,%3c?xml%20version=%271.0%27%20standalone=%27no%27?%3e%3c!DOCTYPE%20svg%20PUBLIC%20%27-//W3C//DTD%20SVG%201.1//EN%27%20%27http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%27%3e%3csvg%20t=%271751205151790%27%20class=%27icon%27%20viewBox=%270%200%201024%201024%27%20version=%271.1%27%20xmlns=%27http://www.w3.org/2000/svg%27%20p-id=%276876%27%20id=%27mx_n_1751205151791%27%20xmlns:xlink=%27http://www.w3.org/1999/xlink%27%20width=%2732%27%20height=%2732%27%3e%3cpath%20d=%27M144.205%20202.496a136.678%20136.678%200%201%200%20273.357%200%20136.678%20136.678%200%201%200-273.357%200zM41.728%20492.902a119.578%20119.578%200%201%200%20239.155%200%20119.578%20119.578%200%201%200-239.155%200zM144.23%20749.158a102.502%20102.502%200%201%200%20205.005%200%20102.502%20102.502%200%201%200-205.005%200zM435.2%20861.926a89.6%2089.6%200%201%200%20179.2%200%2089.6%2089.6%200%201%200-179.2%200z%20m289.843-95.666a85.427%2085.427%200%201%200%20170.855%200%2085.427%2085.427%200%201%200-170.855%200z%20m136.704-290.433a68.326%2068.326%200%201%200%20136.653%200%2068.326%2068.326%200%201%200-136.653%200zM759.22%20219.571a51.251%2051.251%200%201%200%20102.502%200%2051.251%2051.251%200%201%200-102.503%200zM512%2085.376a34.176%2034.176%200%201%200%2068.352%200%2034.176%2034.176%200%201%200-68.352%200z%27%20p-id=%276877%27%20fill=%27%23175DFF%27%3e%3c/path%3e%3c/svg%3e"
+              alt=""></div>
+          <div class="loading-text">AIによる株式分析中</div>
+          <div class="loading-result">株式コ-ド:</div>
+          <div class="loading-progress">
+            <div class="inner"></div>
+          </div>
+          <div class="loading-result">残り 1.5 秒</div>
+        </div>
+        <div class="result">
+          <div class="translate">
+            <div class="result-text">あなたの株式AI分析レポ-トが完了しました</div>
+            <div class="normal-text">
+              詳細な株式レポ-トを取得するために、AIアシスタントを追加してください。また、今日のおすすめ優良株3銘柄も追加で受け取ることができます。 </div>
+          </div>
+          <div onclick="show()" class="info-btn">LINEを追加してAI分析レポートを受け取る</div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="footer-container">
+  <div class="disclaimer">
+  <p>本サービスは、AI技術を用いて株価や銘柄に関する分析情報を提供するものであり、特定の銘柄の売買を推奨するものではありません。</p>
+</div>
+  <div class="footer-menu">
+    <a href="javascript:void(0)">免責事項</a>
+    <a href="javascript:void(0)">個人情報保護方針</a>
+    <a href="javascript:void(0)">利用規約</a>
+  </div>
+
+  <div class="disclaimer">
+    <p></p>
+    <p>株式会社城南信用金庫 関東財務局（登録番号：51）</p>
+    <p>加入協会：全国信用金庫協会、一般社団法人 第二種金融商品取引業協会、一般社団法人 金融先物取引業協会、一般社団法人 日本暗号資産等取引業協会、一般社団法人 日本投資顧問業協会</p>
+    <p>当サイトは、以下の銀行が同行の金融商品仲介をご利用のお客様へ勧誘する際に使用されることがあります。</p>
+    <p>＜株式会社東京スター銀行＞</p>
+    <p>登録金融機関 関東財務局（登録番号：72） 加入協会：全国信用金庫協会</p>
+    <p>＜株式会社あおぞら銀行＞</p>
+    <p>登録金融機関 近畿財務局（登録番号：19） 加入協会：第二地銀協会、一般社団法人 金融先物取引業協会</p>
+  </div>
+</div>
+
+<!-- 弹窗内容 -->
+<div id="disclaimer-modal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <div class="modal-header">
+      <h2>免責事項</h2>
+    </div>
+    <div class="modal-body">
+      <p>当サイトは、以下の銀行が同行の金融商品仲介をご利用のお客様へ勧誘する際に使用されることがあります。</p>
+      <p>＜株式会社東京スター銀行＞</p>
+      <p>登録金融機関 関東財務局（登録番号：72） 加入協会：全国信用金庫協会</p>
+      <p>＜株式会社あおぞら銀行＞</p>
+      <p>登録金融機関 近畿財務局（登録番号：19） 加入協会：第二地銀協会、一般社団法人 金融先物取引業協会</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<div id="privacy-modal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <div class="modal-header">
+      <h2>個人情報保護方針</h2>
+    </div>
+    <div class="modal-body">
+      <p>当社は、お客様の個人情報の重要性について認識しています。個人情報の保護に関する法律を遵守するとともに、以下のプライバシーポリシーに従い、適切な取扱いおよび保護に努めます。</p>
+      <p>1. 個人情報の取得について<br>
+      当社は、偽りその他不正の手段によらず、適正に個人情報を取得いたします。</p>
+      <p>2. 個人情報の利用について<br>
+      取得した個人情報は、以下の利用目的の範囲内において利用いたします。</p>
+      <p>3. 個人情報の第三者提供について<br>
+      当社は、原則として、本人の同意を得ずに第三者に対し個人情報を提供しません。</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<div id="terms-modal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <div class="modal-header">
+      <h2>利用規約</h2>
+    </div>
+    <div class="modal-body">
+      <p>この利用規約は、当サイトの利用条件を定めるものです。当サイトを利用される際は、以下の規約に同意したものとみなされます。</p>
+      <p>第1条（適用）<br>
+      本規約は、ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。</p>
+      <p>第2条（利用料金）<br>
+      当社は、本サービスの利用料金を随時変更できるものとします。</p>
+      <p>第3条（禁止事項）<br>
+      ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。<br>
+      1. 法令または公序良俗に違反する行為<br>
+      2. 犯罪行為に関連する行為<br>
+      3. 当社のサーバーに負担をかける行為</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn">閉じる</button>
+    </div>
+  </div>
+</div>
+<script src="static/js/main.js"></script>
+</body>
+
+
+</html>
